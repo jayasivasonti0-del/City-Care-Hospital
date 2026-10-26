@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-5">
+        <div class="card shadow p-4 mb-4">
+            <h4>Book Appointment</h4>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Patient Name</label>
+                    <input type="text" name="patient_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Doctor</label>
+                    <input type="text" name="doctor" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Date</label>
+                    <input type="date" name="date" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Book</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="card shadow p-4">
+            <h4>Your Appointments</h4>
+            <ul class="list-group">
+                {% for appt in appointments %}
+                    <li class="list-group-item">
+                        <strong>{{ appt.doctor }}</strong> on {{ appt.date }} (Patient: {{ appt.patient_name }})
+                    </li>
+                {% else %}
+                    <li class="list-group-item text-muted">No appointments booked.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
